@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <title>Accueil - E-Commerce Piscine</title>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1 class="site-title">E-Commerce Piscine</h1>
+    </header>
+
+    <main id="main-content">
+    <main id="article-detail">
+    <article class="article-container">
+        <h1 class="article-title">{{ category.title }}</h1>
+        <h3 class="article-title">Numeros d'identification BDD :</h3>
+        <p class="article-description">{{ category.id }}</p>
+        <h3 class="article-title">Description :</h3>
+        <p class="article-description">{{ category.description }}</p>
+        <h3 class="article-title">Couleur :</h3>
+        <p class="article-description">{{ category.color }}</p>
+        <h3 class="article-title">Date de création</h3>
+        <p class="article-description">{{ category.createdAt|date('d/m/Y H:i:s') }}</p>
+    </article>
+</main>
+    </main>
+</html

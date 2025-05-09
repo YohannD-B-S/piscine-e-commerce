@@ -10,14 +10,16 @@
 
     <header id="site-header">
         <h1 class="site-title">E-Commerce Piscine</h1>
-        <ul class="category-list">
-                <li class="category-item">
-                    <a href="{{ path('categories') }}"><article>{{ category.title }}</article></a>
-                </li>
-                <li class="category-item">
-                    <a href="{{ path('products') }}"><article>{{ product.title }}</article></a>
-                </li>
     </header>
 
-</body>
+    <main id="main-content">
+        <h2>Liste des catégories</h2>
+        <ul class="category-list">
+            {% for category in categories %}
+                <li class="category-item">
+            <a href="{{ path('category', {'id' : category.id}) }}"><article>{{ category.title }}</article></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
 </html>
