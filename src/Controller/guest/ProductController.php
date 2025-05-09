@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 class ProductController extends AbstractController{
-    
+
     #[Route('/products', name: 'products')]
     public function displayProduct(ProductRepository $productRepository){
 
-        $product=$productRepository->findAll();
+        $productPublished=$productRepository->findAll();
 
-        return $this->render('guest/list-products.html.twig', [
-            'products' => $product,
+        return $this->render('guest/products/list-products.html.twig', [
+            'products' => $productPublished,
         ]);
         
 
@@ -26,7 +26,7 @@ class ProductController extends AbstractController{
 
         $product=$productRepository->find($id);
 
-        return $this->render('guest/details-product.html.twig', [
+        return $this->render('guest/products/details-product.html.twig', [
             'product' => $product,
         ]);
     }

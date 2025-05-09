@@ -8,16 +8,28 @@
 </head>
 <body>
 
-    <header id="site-header">
+    <header class="header">
         <h1 class="site-title">E-Commerce Piscine</h1>
-        <ul class="category-list">
-                <li class="category-item">
-                    <a href="{{ path('categories') }}"><article>{{ category.title }}</article></a>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="{{ path('categories') }}" class="nav-link">
+                        <article class="nav-article">Catégories</article>
+                    </a>
                 </li>
-                <li class="category-item">
-                    <a href="{{ path('products') }}"><article>{{ product.title }}</article></a>
+                <li class="nav-item">
+                    <a href="{{ path('products') }}" class="nav-link">
+                        <article class="nav-article">Produits</article>
+                    </a>
                 </li>
+            </ul>
+        </nav>
     </header>
+
+    <main class="main-content">
+        {% block main %}
+        {% endblock %}
+    </main>
 
 </body>
 </html>

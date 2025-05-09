@@ -1,0 +1,25 @@
+{% extends 'guest/base.html.twig' %}
+
+{% block metatitle %} Liste des produits {% endblock %}
+
+{% block main %}
+    <main class="main-content">
+        <section class="category-detail">
+            <article class="article-container">
+                <h1 class="article-title">{{ category.title }}</h1>
+
+                <h3 class="article-subtitle">Numéro d'identification BDD :</h3>
+                <p class="article-description">{{ category.id }}</p>
+
+                <h3 class="article-subtitle">Description :</h3>
+                <p class="article-description">{{ category.description }}</p>
+
+                <h3 class="article-subtitle">Couleur :</h3>
+                <p class="article-description">{{ category.color }}</p>
+
+                <h3 class="article-subtitle">Date de création :</h3>
+                <p class="article-description">{{ category.createdAt|date('d/m/Y H:i:s') }}</p>
+            </article>
+        </section>
+    </main>
+{% endblock %}

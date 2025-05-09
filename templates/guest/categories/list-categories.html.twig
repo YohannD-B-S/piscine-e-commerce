@@ -1,0 +1,18 @@
+{% extends 'guest/base.html.twig' %}
+
+{% block metatitle %} Liste des catégories {% endblock metatitle %}
+
+{% block main %}
+    <main class="main-content">
+        <h2 class="main-title">Liste des catégories</h2>
+        <ul class="category-list">
+            {% for category in categories %}
+                <li class="category-item">
+                    <a href="{{ path('category', {'id' : category.id}) }}" class="category-link">
+                        <article class="category-article">{{ category.title }}</article>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}
