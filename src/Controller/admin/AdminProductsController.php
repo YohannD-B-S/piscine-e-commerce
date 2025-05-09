@@ -33,6 +33,15 @@ class AdminProductsController extends AbstractController
 
             $category=$categoryRepository->find($categoryId);
 
+            try {
+				$product = new Product($title, $description, $price, $isPublished, $category);
+
+				$entityManager->persist($product);
+				$entityManager->flush();
+			} catch (\Exception $exception) {
+				$this->addFlash('error', $exception->getMessage());
+			}
+
             //on créé une instance Poduct lié au construct de l'entity Product
             //on lui passe les valeurs récupérées dans le formulaire
             $product= new Product($title, $description, $price, $isPublished, $category);

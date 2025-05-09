@@ -21,6 +21,14 @@
 	</nav>
 </header>
 
+{% for message in app.flashes('error') %}
+
+	<div style="background-color: red;">
+		<p>{{ message }} </p>
+	</div>
+
+{% endfor %}
+
 <main class="main-content">
 	{% block main %}
 	{% endblock %}

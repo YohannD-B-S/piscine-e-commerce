@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -38,6 +39,11 @@ class Product
     //Le constructeur est utilisé pour initialiser les propriétés de l'entité lors de la création d'un nouvel objet.
     public function __construct($title, $description, $price, $isPublished, $category)
     {
+
+        if (strlen($title) < 3) {
+            throw new Exception('Le titre doit faire plus de 3 caractères');
+        }
+
         $this->title = $title;
         $this->description = $description;
         $this->price = $price;
