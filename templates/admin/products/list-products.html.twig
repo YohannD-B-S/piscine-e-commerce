@@ -17,6 +17,7 @@
 					<th class="table-heading">Catégorie</th>
 					<th class="table-heading">Date de création</th>
 					<th class="table-heading">Date de modification</th>
+                    <th class="table-heading">Action</th>
 				</tr>
 			</thead>
 
@@ -29,6 +30,7 @@
 						<td class="table-data">{{ product.category.title }}</td>
 						<td class="table-data">{{ product.createdAt | date('d-m-Y H:i:s') }}</td>
 						<td class="table-data">{{ product.updatedAt | date('d-m-Y H:i:s') }}</td>
+                        <td><a href="{{path('admin-delete-product', {'id' : product.id})}}">Supprimer</a></td>
 					</tr>
 				{% endfor %}
 			</tbody>
