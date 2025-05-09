@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %} Créer un produit {% endblock metatitle %}
+
+{% block main %}
+
+    <h1 class="form-title">Créer un produit</h1>
+
+    <form method="POST" class="product-form">
+        <label for="title" class="form-label">Titre
+            <input type="text" name="title" class="form-input">
+        </label>
+
+        <label for="description" class="form-label">Description
+            <input type="text" name="description" class="form-input">
+        </label>
+
+        <label for="price" class="form-label">Prix
+            <input type="number" name="price" class="form-input">
+        </label>
+
+        <label for="is-published" class="form-label">Publié ?
+            <input type="checkbox" name="is-published" class="form-checkbox">
+        </label>
+
+        <label for="category-id" class="form-label">Catégorie :
+            <select name="category-id" class="form-select">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.title }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit" class="form-button">Créer le produit</button>
+    </form>
+</main>
+
+{% endblock %}
