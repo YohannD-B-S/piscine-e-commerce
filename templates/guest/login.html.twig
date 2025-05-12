@@ -1,0 +1,23 @@
+{% extends 'guest/base.html.twig'%}
+
+{% block metatitle %} Connexion {% endblock metatitle %}
+
+{% block main %}
+
+	<h1>Se connecter</h1>
+	
+	<form method="POST" class ="login-form">
+
+		<label class="form-label"> Email
+			<input type="email" name="_username">
+		</label>
+
+
+		<label class "form-label"> Mot de passe
+			<input type="password" name="_password">
+		</label>
+
+		<button type="submit" class="form-input">Se connecter</button>
+	
+	</form>
+{% endblock main %}
