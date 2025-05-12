@@ -39,6 +39,7 @@ class AdminProductsController extends AbstractController
 
 				$entityManager->persist($product);
 				$entityManager->flush();
+                $this->addFlash('success', 'Produit créé !');
 			} catch (\Exception $exception) {
 				$this->addFlash('error', $exception->getMessage());
 			}
