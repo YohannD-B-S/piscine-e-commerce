@@ -86,9 +86,49 @@ class AdminProductsController extends AbstractController
 	}
     
 	#[Route('/admin/update-product/{id}', name: 'admin-update-product')]
-	public function displayUpdateProduct($id, ProductRepository $productRepository, CategoryRepository $categoryRepository) {
+	public function displayUpdateProduct($id, ProductRepository $productRepository, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager) {
 
 		$product = $productRepository->find($id);
+
+        if ($request->isMethod('POST')) {
+            $title = $request->request->get('title');
+            $description = $request->request->get('description');
+            $price = $request->request->get('price');
+            $categoryId = $request->request->get('category-id');
+
+            if ($request->request->get('isPublished') === 'on') {
+                $isPublished = true;
+            } else {
+                $isPublished = false;
+            }
+
+            $category = $categoryRepository->find($categoryId);
+
+            // on peut ecrre les proprité dans le controller
+            //ce qui implique de ne pas utiliser le constructeur
+            // et de tout écrire dans le controller :
+
+            //$product->setTitle($title);
+            //$product->setDescription($description);
+            //$product->setPrice($price);
+            //$product->setIsPublished($isPublished);
+            //$product->setCategory($category);
+            //$product->setUpdatedAt(new \DateTime());
+
+            // ou on peut utiliser le constructeur de l'entity Product
+            // la function update est dans l'entity Product
+            // et on l'appel ici dans le controller.
+
+            	try {
+				$product->update($title, $description, $price, $isPublished, $category);	
+
+				$entityManager->persist($product);
+				$entityManager->flush();
+			} catch (\Exception $exception) {
+				$this->addFlash('error', $exception->getMessage());
+			}
+
+        }
 
 		$categories = $categoryRepository->findAll();
 
