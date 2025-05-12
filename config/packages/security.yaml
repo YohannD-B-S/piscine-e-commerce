@@ -19,6 +19,7 @@ security:
             form_login:
                 login_path: login   # il gere la connection ujtilisateur de maniere a eviter de faire tout le pmrotocole session
                 check_path: login
+                default_target_path: admin-list-products
             logout:
                 path: logout   
 

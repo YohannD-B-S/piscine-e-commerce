@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <title>Accueil - E-Commerce Piscine</title>
-</head>
-<body>
+{% extends 'guest/base.html.twig'%}
 
-    <header class="header">
-        <h1 class="site-title">E-Commerce Piscine</h1>
-        <nav class="nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="{{ path('categories') }}" class="nav-link">
-                        <article class="nav-article">Catégories</article>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ path('products') }}" class="nav-link">
-                        <article class="nav-article">Produits</article>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+{% block main %}
 
-    <main class="main-content">
-        {% block main %}
-        {% endblock %}
-    </main>
+<h1 class="article-title">Bienvenu sur le site ecommerce de la piscnine </h1>
 
-</body>
-</html>
+{% endblock main %}
