@@ -18,10 +18,13 @@
 			<li class="nav-item"><a href="{{ path('categories') }}" class="nav-link">Catégories</a></li>
 			<li class="nav-item"><a href="{{ path('products') }}" class="nav-link">Produits</a></li>
 		</ul>
+	<p>Connecté en tant que {{app.user.email}}</p>
+		<a href="{{ path('logout') }}">Se deconnecter<a>
 	</nav>
 </header>
 
-<p>Connecté en tant que {{app.user.email}}</p>
+
+
 
 {% for message in app.flashes('error') %}
 

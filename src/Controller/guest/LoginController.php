@@ -16,4 +16,11 @@ class LoginController extends AbstractController
 
         return $this->render('guest/login.html.twig');
     }
+
+    #[Route('/logout', name: 'logout')]
+    public function displayLogout(){
+
+        
+    }
+
 }
