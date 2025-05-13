@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController{
 
 
-    #[Route('/categories', name: 'categories')]
+    #[Route('/categories', name: 'categories', methods: ['GET'])]
          public function displayCategory(CategoryRepository $categoryRepository):Response {
     
         $category=$categoryRepository->findAll();
@@ -20,10 +20,7 @@ class CategoryController extends AbstractController{
             ]);
         }
 
-        #[Route('/details-category/{id}', name: 'category')]
-
-       
-         
+        #[Route('/details-category/{id}', name: 'category', methods: ['GET'])]         
         public function displayCategoryById(CategoryRepository $categoryRepository, int $id):Response{
     
             $category=$categoryRepository->find($id);

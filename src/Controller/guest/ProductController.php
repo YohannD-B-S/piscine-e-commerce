@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController{
 
-    #[Route('/products', name: 'products')]
+    #[Route('/products', name: 'products', methods: ['GET'])]
     public function displayProduct(ProductRepository $productRepository):Response{
 
         $productPublished=$productRepository->findAll();
@@ -22,7 +22,7 @@ class ProductController extends AbstractController{
 
     }
 
-    #[Route('/details-product/{id}', name: 'product')]
+    #[Route('/details-product/{id}', name: 'product', methods: ['GET'])]
     public function displayProductById(ProductRepository $productRepository,int $id):Response{
 
 

@@ -17,7 +17,7 @@ class AdminUserController extends AbstractController
 {
 
 
-    #[Route('/admin/create-admin', name: 'admin-create-admin')]
+    #[Route('/admin/create-admin', name: 'admin-create-admin', methods: ['GET', 'POST'])]
     public function displayCreateUser(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager):RedirectResponse|Response
     {
 if ($request->isMethod('POST')) { // Vérifie si la requête est de type POST
@@ -50,7 +50,7 @@ if ($request->isMethod('POST')) { // Vérifie si la requête est de type POST
     } // Fin de la méthode
 
 
-    #[Route('/admin/list-admin', name: 'admin-list-admin')]
+    #[Route('/admin/list-admin', name: 'admin-list-admin', methods: ['GET',])]
 
     public function diplayListAdmin(UserRepository $userRepository):Response{
 

@@ -9,13 +9,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{
 
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'home', methods: ['GET'])]
     public function displayHome(){
        return $this->render('guest/home.html.twig', [
         ]);
     }
 
-   #[Route('/guest/404', name: 'guest_404')]
+   #[Route('/guest/404', name: 'guest_404', methods: ['GET'])]
 	public function displayAdmin404():Response
 	{
 		$html = $this->renderView('guest/404.html.twig');

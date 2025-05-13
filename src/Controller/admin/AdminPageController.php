@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminPageController extends AbstractController {
 
 
-	#[Route('/admin/404', name: 'admin_404')]
+	#[Route('/admin/404', name: 'admin_404', methods: ['GET'])]
 	public function displayAdmin404():Response
 	{
 		$html = $this->renderView('admin/404.html.twig');

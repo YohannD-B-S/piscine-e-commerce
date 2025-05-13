@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class LoginController extends AbstractController
 
 {
-    #[Route('/login', name: 'login')]
+    #[Route('/login', name: 'login', methods: ['GET', 'POST'])]
     public function displayLogin(AuthenticationUtils $authentication):Response
     {
          
@@ -18,7 +18,7 @@ class LoginController extends AbstractController
         return $this->render('guest/login.html.twig');
     }
 
-    #[Route('/logout', name: 'logout')]
+    #[Route('/logout', name: 'logout', methods: ['GET', 'POST'])]
     public function displayLogout(){
 
 
