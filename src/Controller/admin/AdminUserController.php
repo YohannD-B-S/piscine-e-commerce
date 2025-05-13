@@ -3,6 +3,7 @@
 namespace App\Controller\admin;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,13 +40,25 @@ if ($request->isMethod('POST')) { // Vérifie si la requête est de type POST
                     $this->addFlash ('error', 'Email déjà utilisé.');
                 }
             }
-
-            
-            
-            
+      
             
         } // Fin du bloc conditionnel
 
         return $this->render('/admin/user/create-user.html.twig'); // Affiche la page de création d’utilisateur
     } // Fin de la méthode
+
+
+    #[Route('/admin/list-admin', name: 'admin-list-admin')]
+
+    public function diplayListAdmin(UserRepository $userRepository){
+
+        $users =$userRepository->findAll();
+
+        return $this->render('/admin/user/list-users.html.twig',[
+            'users' => $users
+        ]);
+
+    }
+
+
 } // Fin de la classe
