@@ -7,7 +7,9 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,7 +18,7 @@ class AdminUserController extends AbstractController
 
 
     #[Route('/admin/create-admin', name: 'admin-create-admin')]
-    public function displayCreateUser(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager)
+    public function displayCreateUser(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager):RedirectResponse|Response
     {
 if ($request->isMethod('POST')) { // Vérifie si la requête est de type POST
             $email = $request->request->get('email'); // Récupère l'email depuis la requête
@@ -50,7 +52,7 @@ if ($request->isMethod('POST')) { // Vérifie si la requête est de type POST
 
     #[Route('/admin/list-admin', name: 'admin-list-admin')]
 
-    public function diplayListAdmin(UserRepository $userRepository){
+    public function diplayListAdmin(UserRepository $userRepository):Response{
 
         $users =$userRepository->findAll();
 

@@ -8,14 +8,16 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminProductsController extends AbstractController
 {
 
     #[Route('/admin/create-product', name: 'admin-create-product')]
-    public function displayCreateProduct(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager){
+    public function displayCreateProduct(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager ):Response{
 
         if ($request->isMethod('POST')){
             $title=$request->request->get('title');
@@ -63,7 +65,7 @@ class AdminProductsController extends AbstractController
     }
 
     #[Route('/admin/list-products', name: 'admin-list-products')]
-	public function displayListProducts(ProductRepository $productRepository) {
+	public function displayListProducts(ProductRepository $productRepository):Response {
 
 		$products = $productRepository->findAll();
 
@@ -74,7 +76,7 @@ class AdminProductsController extends AbstractController
 
     
 	#[Route('/admin/delete-product/{id}', name:'admin-delete-product')]
-	public function deleteProduct($id, ProductRepository $productRepository, EntityManagerInterface $entityManager) {
+	public function deleteProduct($id, ProductRepository $productRepository, EntityManagerInterface $entityManager):Response{
 
         $product=$productRepository->find($id);
 
@@ -97,7 +99,7 @@ class AdminProductsController extends AbstractController
 
     
 	#[Route('/admin/update-product/{id}', name: 'admin-update-product')]
-	public function displayUpdateProduct($id, ProductRepository $productRepository, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager) {
+	public function displayUpdateProduct($id, ProductRepository $productRepository, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager):RedirectResponse|Response {
 
 		$product = $productRepository->find($id);
 
