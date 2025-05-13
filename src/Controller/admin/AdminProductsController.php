@@ -141,6 +141,7 @@ class AdminProductsController extends AbstractController
 
 				$entityManager->persist($product);
 				$entityManager->flush();
+                $this->addFlash('success', 'Le produit a bien été modifié');
 			} catch (\Exception $exception) {
 				$this->addFlash('error', $exception->getMessage());
 			}

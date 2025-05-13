@@ -18,9 +18,20 @@
 			<li class="nav-item"><a href="{{ path('categories') }}" class="nav-link">Catégories</a></li>
 			<li class="nav-item"><a href="{{ path('products') }}" class="nav-link">Produits</a></li>
             <li class="nav-item"><a href="{{path('login')}}">Se Connecter</a></li>
+			<li class="nav-item">
+			
+			<form action="{{ path('product-search-results') }}" method="GET">
+				<input type="text" name="search" placeholder='Nom'>
+				<button type="submit" placeholder='Rechercher'>Rechercher</button>
+			</form>
+
+
+
 		</ul>
 	</nav>
 </header>
+
+
 
 
 

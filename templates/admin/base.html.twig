@@ -19,12 +19,15 @@
 			<li class="nav-item"><a href="{{ path('admin-list-admin') }}" class="nav-link">Liste Admins</a></li>
 			<li class="nav-item"><a href="{{ path('admin-create-product') }}" class="nav-link">creer un produit</a></li>
 			<li class="nav-item"><a href="{{ path('admin-list-products') }}" class="nav-link">Liste des produits</a></li>
+			<li class="nav-item">Connecté en tant que {{app.user.email}}</li>
+			<li class="nav-item"><a href="{{ path('logout') }}">Se deconnecter<a></li>
+
 
 
 
 		</ul>
-	<p>Connecté en tant que {{app.user.email}}</p>
-		<a href="{{ path('logout') }}">Se deconnecter<a>
+	<p></p>
+	<p></p>
 	</nav>
 </header>
 

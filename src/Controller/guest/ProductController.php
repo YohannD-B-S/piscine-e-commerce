@@ -4,6 +4,7 @@ namespace App\Controller\guest;
 
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -38,5 +39,13 @@ class ProductController extends AbstractController{
         return $this->render('guest/products/details-product.html.twig', [
             'product' => $product,
         ]);
+    }
+
+    #[Route(path: '/resultats-recherche', name:'product-search-results', methods: ['GET'])]
+	public function displayResultsSearchProducts(Request $request) {
+		
+		$search = $request->query->get('search');
+
+		dd($search);
     }
 }
