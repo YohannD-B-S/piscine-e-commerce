@@ -1,0 +1,25 @@
+{% extends 'guest/base.html.twig' %}
+
+{% block metatitle %}
+    Résultat de la recherche {{ search }}
+{% endblock metatitle %}
+
+{% block main %}
+<div class="main-content">
+    <h1>Résultats de recherche pour "{{ search }}"</h1>
+
+    <ul class="product-list">
+        {% for product in productsFound %}
+            <li class="product-item">
+                <a href="{{ path('product', {'id' : product.id}) }}" class="product-link">
+                    <div class="article-container">
+                        <h2>{{ product.title }}</h2>
+                        <p>{{ product.description }}</p>
+                        <p>Catégorie : {{ product.category.title }}</p>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock main %}

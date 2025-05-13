@@ -41,15 +41,18 @@ class ProductController extends AbstractController{
         ]);
     }
 
-    #[Route(path: '/resultats-recherche', name:'product-search-results', methods: ['GET'])]
-	public function displayResultsSearchProducts(Request $request, ProductRepository $productRepository) {
-        
-        $search = $request->query->get('search');
-		
-		$productFound= $productRepository->findByTitleContain($search);
+#[Route(path: '/resultats-recherche', name:'product-search-results', methods: ['GET'])] // Déclare une route accessible via une requête GET à l'URL "/resultats-recherche"
 
-        dd($productFound);
+public function displayResultsSearchProducts(Request $request, ProductRepository $productRepository) { // Fonction pour afficher les résultats de la recherche
 
-		
-    }
+    $search = $request->query->get('search'); // Récupère le paramètre "search" depuis l'URL
+
+    $productsFound = $productRepository->findByTitleContain($search); // Recherche dans la base de données les produits dont le titre contient la valeur de $search
+
+    return $this->render('guest/products/search-results.html.twig', [ // Rend la vue "search-results.html.twig"
+        'search' => $search, // Transmet le terme recherché à la vue
+        'productsFound' => $productsFound // Transmet la liste des produits trouvés à la vue
+    ]);
 }
+}
+

@@ -47,15 +47,6 @@ class AdminProductsController extends AbstractController
 				$this->addFlash('error', $exception->getMessage());
 			}
 
-            //on créé une instance Poduct lié au construct de l'entity Product
-            //on lui passe les valeurs récupérées dans le formulaire
-            $product= new Product($title, $description, $price, $isPublished, $category);
-            
-            //persist permet de dire à Doctrine que l'on veut sauvegarder l'entité dans la base de données
-            //flush permet d'exécuter la requête SQL pour insérer l'entité dans la base de données
-            $entityManager->persist($product);
-            $entityManager->flush();
-
         }
 
         $categories=$categoryRepository->findAll();
