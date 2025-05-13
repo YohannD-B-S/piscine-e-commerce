@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -74,17 +75,26 @@ class AdminProductsController extends AbstractController
     
 	#[Route('/admin/delete-product/{id}', name:'admin-delete-product')]
 	public function deleteProduct($id, ProductRepository $productRepository, EntityManagerInterface $entityManager) {
-		
-		$product = $productRepository->find($id);
 
-		$entityManager->remove($product);
-		$entityManager->flush();
+        $product=$productRepository->find($id);
 
-		$this->addFlash('success', 'Produit supprimé !');
+        if (!$product){
+            return $this->redirectToRoute('admin_404');
+        }
+      try {
+			$entityManager->remove($product);
+			$entityManager->flush();
+
+			$this->addFlash('success', 'Produit supprimé !');
+
+		} catch(Exception $exception) {
+
+			$this->addFlash('error', 'Impossible de supprimer le produit');
+		}
 
 		return $this->redirectToRoute('admin-list-products');
-
 	}
+
     
 	#[Route('/admin/update-product/{id}', name: 'admin-update-product')]
 	public function displayUpdateProduct($id, ProductRepository $productRepository, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager) {
