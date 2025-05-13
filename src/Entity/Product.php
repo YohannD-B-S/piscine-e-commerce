@@ -36,6 +36,9 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     //Le constructeur est utilisé pour initialiser les propriétés de l'entité lors de la création d'un nouvel objet.
     public function __construct($title, $description, $price, $isPublished, $category)
     {
@@ -165,6 +168,18 @@ class Product
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
