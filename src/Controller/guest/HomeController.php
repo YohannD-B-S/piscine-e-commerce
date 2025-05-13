@@ -4,6 +4,7 @@
 namespace App\Controller\guest;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{
@@ -13,4 +14,13 @@ class HomeController extends AbstractController{
        return $this->render('guest/home.html.twig', [
         ]);
     }
+
+   #[Route('/guest/404', name: 'guest_404')]
+	public function displayAdmin404()
+	{
+		$html = $this->renderView('guest/404.html.twig');
+		
+		return new Response($html, '404');
+	}
+
 }

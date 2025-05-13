@@ -101,6 +101,10 @@ class AdminProductsController extends AbstractController
 
 		$product = $productRepository->find($id);
 
+            if (!$product){
+            return $this->redirectToRoute('admin_404');
+        }
+
         if ($request->isMethod('POST')) {
             $title = $request->request->get('title');
             $description = $request->request->get('description');

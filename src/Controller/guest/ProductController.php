@@ -30,7 +30,7 @@ class ProductController extends AbstractController{
         $product=$productRepository->find($id);
         
        if (!$product){
-            return $this->redirectToRoute('admin_404');
+            return $this->redirectToRoute('guest_404');
        }
        
 
