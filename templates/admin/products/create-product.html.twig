@@ -6,7 +6,11 @@
 
     <h1 class="form-title">Créer un produit</h1>
 
-    <form method="POST" class="product-form">
+    {# quand un formulaire contient des données normales + des fichiers (images etc) 
+	 il faut ajouter l'attribut enctype="multipart/form-data" au formulaire
+	#}
+
+    <form method="POST" class="product-form" enctype="multipart/form-data">
         <label for="title" class="form-label">Titre
             <input type="text" name="title" class="form-input">
         </label>

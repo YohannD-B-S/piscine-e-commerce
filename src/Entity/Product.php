@@ -40,7 +40,7 @@ class Product
     private ?string $image = null;
 
     //Le constructeur est utilisé pour initialiser les propriétés de l'entité lors de la création d'un nouvel objet.
-    public function __construct($title, $description, $price, $isPublished, $category)
+    public function __construct($title, $description, $price, $isPublished, $category, $imageNewName)
     {
 
         if (strlen($title) < 3) {
@@ -59,6 +59,7 @@ class Product
         $this->price = $price;
         $this->isPublished = $isPublished;
         $this->category = $category;
+        $this->image=$imageNewName;
 
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();

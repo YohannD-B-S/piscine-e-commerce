@@ -8,6 +8,7 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class AdminProductsController extends AbstractController
 {
 
     #[Route('/admin/create-product', name: 'admin-create-product', methods: ['GET', 'POST'])]
-    public function displayCreateProduct(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager ):Response{
+    public function displayCreateProduct(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag):Response{
 
         if ($request->isMethod('POST')){
             $title=$request->request->get('title');
@@ -37,8 +38,21 @@ class AdminProductsController extends AbstractController
 
             $category=$categoryRepository->find($categoryId);
 
+
+            //je recupere l'image envoyé dans le formulaire
+            $image=$request->files->get('image');
+            if ($image){
+
+                //je créé un nom unique de l'image grace a la methode uniqid
+                //guessExtension definit l'extension de l'image (JPG, PNG...)
+                $imageNewName= uniqid() . '.' . $image->guessExtension();
+                //je deplace l'image pour l'enregistrer dans le dossier public/uploads
+                $image->move($parameterBag->get('kernel.project_dir').'/public/uploads', $imageNewName);
+
+            }
+
             try {
-				$product = new Product($title, $description, $price, $isPublished, $category);
+				$product = new Product($title, $description, $price, $isPublished, $category, $imageNewName);
 
 				$entityManager->persist($product);
 				$entityManager->flush();
